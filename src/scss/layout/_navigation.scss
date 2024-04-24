@@ -1,0 +1,30 @@
+.bar {
+  display: flex;
+  flex-direction: column;
+  padding: 2rem 0;
+
+  @include desktop {
+    flex-direction: row;
+    justify-content: space-between;
+  }
+}
+
+.navigation {
+  a {
+    color: $blanco;
+    text-decoration: none;
+    font-size: 2.2rem;
+    display: block;
+    text-align: center;
+
+    @include tablet {
+      font-size: 1.8rem;
+    }
+  }
+
+  @include tablet {
+    display: flex;
+    align-items: center;
+    gap: 2rem;
+  }
+}
