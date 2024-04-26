@@ -8,14 +8,21 @@
 
 .entrance-blog {
   margin-bottom: 2rem;
+
   @include tablet {
     display: grid;
     grid-template-columns: 1fr 2fr;
     column-gap: 2rem;
   }
 
-  &:last-of-type{
+  &:last-of-type {
     margin-bottom: 0;
+  }
+}
+
+.information-meta {
+  span {
+    color: $amarillo;
   }
 }
 
@@ -42,9 +49,5 @@
       background-color: $verde;
       margin-top: 1rem;
     }
-  }
-
-  span {
-    color: $amarillo;
   }
 }
