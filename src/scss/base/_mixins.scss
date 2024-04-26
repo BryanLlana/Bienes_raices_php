@@ -32,6 +32,7 @@
   text-align: center;
   margin-top: calc($separacion / 2);
   display: $display;
+  border: none;
 
   &:hover {
     background-color: darken($bgcolor, 5);
