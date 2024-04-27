@@ -1,34 +1,6 @@
-<!DOCTYPE html>
-<html lang="en">
-
-<head>
-  <meta charset="UTF-8">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Bienes Raíces</title>
-  <link rel="preconnect" href="https://fonts.googleapis.com">
-  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
-  <link href="https://fonts.googleapis.com/css2?family=Onest:wght@100..900&display=swap" rel="stylesheet">
-  <link rel="stylesheet" href="./build/css/app.css">
-</head>
-
-<body>
-  <header class="header">
-    <div class="container containt-header">
-      <div class="bar">
-        <a href="/">
-          <img src="./build/img/logo.svg" alt="Logo bienes raices">
-        </a>
-
-        <nav class="navigation">
-          <a href="./aboutus.html">Nosotros</a>
-          <a href="./announcements.html">Anuncios</a>
-          <a href="./blog.html">Blog</a>
-          <a href="./contact.html">Contacto</a>
-        </nav>
-      </div>
-    </div>
-  </header>
-
+<?php 
+  include './includes/templates/header.php'
+?>
   <main class="container section content-center">
     <h2>Contacto</h2>
 
@@ -88,21 +60,6 @@
       <input type="submit" value="Enviar" class="btn-green">
     </form>
   </main>
-
-  <footer class="footer section">
-    <div class="container content-footer">
-      <nav class="navigation">
-        <a href="./aboutus.html">Nosotros</a>
-        <a href="./announcements.html">Anuncios</a>
-        <a href="./blog.html">Blog</a>
-        <a href="./contact.html">Contacto</a>
-      </nav>
-    </div>
-
-    <p class="copyright">Todos los derechos reservados 2024 &copy;</p>
-  </footer>
-
-  <script src="./build/js/bundle.min.js"></script>
-</body>
-
-</html>
+<?php 
+  include './includes/templates/footer.php'
+?>
