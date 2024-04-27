@@ -1,5 +1,6 @@
-<?php 
-  include './includes/templates/header.php'
+<?php
+  require './includes/helpers/index.php';
+  renderTemplate('header')
 ?>
   <main class="container section content-center">
     <h2>Guía para la decoración de tu hogar</h2>
@@ -12,5 +13,5 @@
     <p class="summary-announcement">Lorem ipsum dolor sit amet consectetur, adipisicing elit. Libero a, rerum neque, qui nihil expedita dignissimos reiciendis molestias officia error mollitia assumenda amet beatae, ipsum doloremque nulla nesciunt impedit odio.</p>
   </main>
 <?php 
-  include './includes/templates/footer.php'
+  renderTemplate('footer')
 ?>

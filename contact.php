@@ -1,5 +1,6 @@
-<?php 
-  include './includes/templates/header.php'
+<?php
+  require './includes/helpers/index.php';
+  renderTemplate('header')
 ?>
   <main class="container section content-center">
     <h2>Contacto</h2>
@@ -61,5 +62,5 @@
     </form>
   </main>
 <?php 
-  include './includes/templates/footer.php'
+  renderTemplate('footer')
 ?>

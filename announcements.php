@@ -1,5 +1,6 @@
 <?php
-  include './includes/templates/header.php'
+  require './includes/helpers/index.php';
+  renderTemplate('header')
 ?>
   <main class="container section">
     <section class="section container">
@@ -41,5 +42,5 @@
     </section>
   </main>
 <?php 
-  include './includes/templates/footer.php'
+  renderTemplate('footer')
 ?>

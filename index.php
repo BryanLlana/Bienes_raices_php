@@ -1,6 +1,6 @@
 <?php
-  $isHomePage = true;
-  include './includes/templates/header.php'
+  require './includes/helpers/index.php';
+  renderTemplate('header', true)
 ?>
   <main class="container section">
     <h2>Más sobre nosotros</h2>
@@ -121,5 +121,5 @@
     </section>
   </div>
 <?php 
-  include './includes/templates/footer.php'
+  renderTemplate('footer')
 ?>
