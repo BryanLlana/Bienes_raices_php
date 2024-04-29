@@ -1,0 +1,14 @@
+.alert {
+  padding: .5rem 0;
+  text-align: center;
+  color: $blanco;
+  font-weight: $bold;
+  margin: 1rem 0;
+  &.error {
+    background-color: $red;
+  }
+
+  &.success {
+    background-color: $verde;
+  }
+}
