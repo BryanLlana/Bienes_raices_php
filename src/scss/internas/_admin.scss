@@ -27,6 +27,17 @@ table.properties {
     }
   }
 
+  tbody {
+    .title {
+      width: 50rem;
+      text-align: left;
+    }
+
+    tr {
+      text-align: center;
+    }
+  }
+
   .image-table {
     width: 20rem;
   }

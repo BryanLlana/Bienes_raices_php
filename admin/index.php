@@ -1,4 +1,9 @@
 <?php
+  require '../includes//config/database.php';
+  $database = connectDatabase();
+  $queryGetProperties = "SELECT * FROM properties";
+  $resultGetProperties = mysqli_query($database, $queryGetProperties);
+
   $result = $_GET['result'] ?? null;
   require "../includes/helpers/index.php";
   renderTemplate("header");
@@ -22,19 +27,22 @@
       </tr>
     </thead>
     <tbody>
-      <tr>
-        <td>1</td>
-        <td>Casa en la playa</td>
-        <td><img src="../images/771c2d22813ffa0940bf2d6ec00e1387.jpg" class="image-table" alt=""></td>
-        <td>120000</td>
-        <td>
-          <a href="#" class="btn-yellow-block">Editar</a>
-          <a href="#" class="btn-red-block">Eliminar</a>
-        </td>
-      </tr>
+      <?php while($property = mysqli_fetch_assoc($resultGetProperties)) { ?>
+        <tr>
+          <td><?php echo $property['id'] ?></td>
+          <td class="title"><?php echo $property['title'] ?></td>
+          <td><img src="../images/<?php echo $property['image'] ?>" class="image-table" alt=""></td>
+          <td>$ <?php echo $property['price'] ?></td>
+          <td>
+            <a href="#" class="btn-yellow-block">Editar</a>
+            <a href="#" class="btn-red-block">Eliminar</a>
+          </td>
+        </tr>
+      <?php } ?>
     </tbody>
   </table>
 </main>
 <?php
+  mysqli_close($database);
   renderTemplate("footer");
 ?>
