@@ -1,36 +1,52 @@
 <?php
+  $id = $_GET['id'];
+  $id = filter_var($id, FILTER_VALIDATE_INT);
+
+  if (!$id) {
+    header('Location: /');
+  }
+
+  require './includes/config/database.php';
+  $database = connectDatabase();
+
+  $queryGetProperty = "SELECT * FROM properties WHERE id = {$id}";
+  $resultGetProperty = mysqli_query($database, $queryGetProperty);
+
+  if ($resultGetProperty->num_rows === 0) {
+    header('Location: /');
+  }
+
+  $property = mysqli_fetch_assoc($resultGetProperty);
+
   require './includes/helpers/index.php';
   renderTemplate('header')
 ?>
   <main class="container section content-center">
-    <h2>Casa en frente al bosque</h2>
+    <h2><?php echo $property['title'] ?></h2>
 
-    <picture>
-      <source srcset="./build/img/destacada.webp" type="image/webp">
-      <source srcset="./build/img/destacada.jpg" type="image/jpeg">
-      <img src="./build/img/destacada.jpg" alt="Imagen de la propiedad">
-    </picture>
+    <img src="./images/<?php echo $property['image'] ?>" alt="Imagen de la propiedad">
 
     <div class="summary-announcement">
-      <p class="price">$3,000,000</p>
+      <p class="price">$ <?php echo $property['price'] ?></p>
       <ul class="icons">
         <li>
           <img loading="lazy" src="./build/img/icono_wc.svg" alt="Icono WC">
-          <p>3</p>
+          <p><?php echo $property['wc'] ?></p>
         </li>
         <li>
           <img loading="lazy" src="./build/img/icono_estacionamiento.svg" alt="Icono estacionamiento">
-          <p>3</p>
+          <p><?php echo $property['parkings'] ?></p>
         </li>
         <li>
           <img loading="lazy" src="./build/img/icono_dormitorio.svg" alt="Icono habitaciones">
-          <p>3</p>
+          <p><?php echo $property['bedrooms'] ?></p>
         </li>
       </ul>
 
-      <p>Lorem, ipsum dolor sit amet consectetur adipisicing elit. Nobis nulla eius tenetur illum officiis, rerum sapiente veritatis. Cupiditate, nemo nisi nam blanditiis, aperiam aspernatur, sint eum sed dolores obcaecati quae!</p>
+      <p><?php echo $property['description'] ?></p>
     </div>
   </main>
 <?php 
+  mysqli_close($database);
   renderTemplate('footer')
 ?>
