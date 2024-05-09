@@ -12,6 +12,8 @@
   <h1>Administrador de Bienes Raices</h1>
   <?php if (intval($result) === 1) { ?>
     <div class="alert success">Anuncio creado correctamente</div>
+  <?php } elseif (intval($result) === 2) { ?>
+    <div class="alert success">Anuncio modificado correctamente</div>
   <?php } ?>
 
   <a href="/admin/properties/create.php" class="btn-green">Nueva propiedad</a>
@@ -34,7 +36,7 @@
           <td><img src="../images/<?php echo $property['image'] ?>" class="image-table" alt=""></td>
           <td>$ <?php echo $property['price'] ?></td>
           <td>
-            <a href="#" class="btn-yellow-block">Editar</a>
+            <a href="/admin/properties/update.php?id=<?php echo $property['id'] ?>" class="btn-yellow-block">Editar</a>
             <a href="#" class="btn-red-block">Eliminar</a>
           </td>
         </tr>
