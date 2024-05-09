@@ -5,6 +5,28 @@
   $resultGetProperties = mysqli_query($database, $queryGetProperties);
 
   $result = $_GET['result'] ?? null;
+
+  if ($_SERVER['REQUEST_METHOD'] === 'POST') {
+    $id = $_POST['id'];
+    $id = filter_var($id, FILTER_VALIDATE_INT);
+
+    if ($id) {
+      $queryGetNameImage = "SELECT image FROM properties WHERE id = {$id}";
+      $resultGetNameImage = mysqli_query($database, $queryGetNameImage);
+      $property = mysqli_fetch_assoc($resultGetNameImage);
+
+      $fileImages = '../images';
+      unlink($fileImages . '/' . $property['image']);
+
+      $queryDeleteProperty = "DELETE FROM properties WHERE id = {$id}";
+      $resultDeleteProperty = mysqli_query($database, $queryDeleteProperty);
+
+      if ($resultDeleteProperty) {
+        header('location: /admin?result=3');
+      }
+    }
+  }
+
   require "../includes/helpers/index.php";
   renderTemplate("header");
 ?>
@@ -14,6 +36,8 @@
     <div class="alert success">Anuncio creado correctamente</div>
   <?php } elseif (intval($result) === 2) { ?>
     <div class="alert success">Anuncio modificado correctamente</div>
+  <?php } elseif (intval($result) === 3) { ?>
+    <div class="alert success">Anuncio eliminado correctamente</div>
   <?php } ?>
 
   <a href="/admin/properties/create.php" class="btn-green">Nueva propiedad</a>
@@ -37,7 +61,10 @@
           <td>$ <?php echo $property['price'] ?></td>
           <td>
             <a href="/admin/properties/update.php?id=<?php echo $property['id'] ?>" class="btn-yellow-block">Editar</a>
-            <a href="#" class="btn-red-block">Eliminar</a>
+            <form method="post" class="w-100">
+              <input type="hidden" name="id" value="<?php echo $property['id'] ?>">
+              <input type="submit" class="btn-red-block" value="Eliminar" />
+            </form>
           </td>
         </tr>
       <?php } ?>
