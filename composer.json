@@ -11,5 +11,7 @@
             "email": "bryanllana14@gmail.com"
         }
     ],
-    "require": {}
+    "require": {
+        "intervention/image": "^3.6"
+    }
 }
