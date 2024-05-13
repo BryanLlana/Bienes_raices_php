@@ -1,4 +1,10 @@
 <?php
+  require "../includes/helpers/index.php";
+  
+  if (!isAuthenticated()) {
+    header('Location: /');
+  }
+
   require '../includes//config/database.php';
   $database = connectDatabase();
   $queryGetProperties = "SELECT * FROM properties";
@@ -27,7 +33,6 @@
     }
   }
 
-  require "../includes/helpers/index.php";
   renderTemplate("header");
 ?>
 <main class="container section">

@@ -1,4 +1,9 @@
 <?php
+require "../../includes/helpers/index.php";
+
+if (!isAuthenticated()) {
+  header('Location: /');
+}
 //* DATABASE
 require '../../includes/config/database.php';
 $database = connectDatabase();
@@ -53,7 +58,6 @@ if ($_SERVER['REQUEST_METHOD'] === "POST") {
   }
 }
 
-require "../../includes/helpers/index.php";
 renderTemplate("header");
 ?>
 <main class="container section">
