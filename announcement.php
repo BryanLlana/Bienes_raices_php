@@ -6,7 +6,7 @@
     header('Location: /');
   }
 
-  require './includes/config/database.php';
+  require './includes/app.php';
   $database = connectDatabase();
 
   $queryGetProperty = "SELECT * FROM properties WHERE id = {$id}";
@@ -18,7 +18,6 @@
 
   $property = mysqli_fetch_assoc($resultGetProperty);
 
-  require './includes/helpers/index.php';
   renderTemplate('header')
 ?>
   <main class="container section content-center">

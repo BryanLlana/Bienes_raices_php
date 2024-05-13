@@ -1,5 +1,5 @@
 <?php
-  require './includes/helpers/index.php';
+  require './includes/app.php';
   renderTemplate('header')
 ?>
   <main class="container section content-center">

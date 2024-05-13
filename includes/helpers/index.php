@@ -1,5 +1,6 @@
 <?php
-require __DIR__ . "/../app.php";
+define('TEMPLATES_URL', __DIR__ . '/../templates');
+define('FUNCTIONS_URL', __DIR__ . '/index.php');
 
 function renderTemplate(string $nameUrl, bool $isHomePage = false) {
   include TEMPLATES_URL . "/{$nameUrl}.php";

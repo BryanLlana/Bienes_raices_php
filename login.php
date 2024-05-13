@@ -1,5 +1,5 @@
 <?php
-require './includes/config/database.php';
+require './includes/app.php';
 $database = connectDatabase();
 
 $errors = [];
@@ -35,7 +35,6 @@ if ($_SERVER['REQUEST_METHOD'] === 'POST') {
   }
 }
 
-require './includes/helpers/index.php';
 renderTemplate('header');
 ?>
 

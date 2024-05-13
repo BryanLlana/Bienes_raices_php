@@ -1,0 +1,15 @@
+{
+    "name": "bryan/bienesraices_poo",
+    "autoload": {
+        "psr-4": {
+            "App\\": "./classes"
+        }
+    },
+    "authors": [
+        {
+            "name": "Bryan Joseph",
+            "email": "bryanllana14@gmail.com"
+        }
+    ],
+    "require": {}
+}

@@ -1,5 +1,4 @@
 <?php
-  require __DIR__ . '/../config/database.php';
   $database = connectDatabase();
   $queryGetProperties = "SELECT * FROM properties LIMIT {$limit}";
   $resultGetProperties = mysqli_query($database, $queryGetProperties);
