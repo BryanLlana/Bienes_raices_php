@@ -1,3 +1,11 @@
+<?php
+  if(!isset($_SESSION)) {
+    session_start();
+  }
+
+  $isAuthenticated = $_SESSION['isAuthenticated'] ?? false;
+?>
+
 <!DOCTYPE html>
 <html lang="en">
 
@@ -24,6 +32,9 @@
           <a href="/announcements.php">Anuncios</a>
           <a href="/blog.php">Blog</a>
           <a href="/contact.php">Contacto</a>
+          <?php if ($isAuthenticated) { ?>
+            <a href="/cerrar-sesion.php">Cerrar sesión</a>
+          <?php } ?>
         </nav>
       </div>
 
