@@ -1,14 +1,12 @@
 <?php
-  require "../includes/helpers/index.php";
+  require "../includes/app.php";
+  use App\Property;
   
   if (!isAuthenticated()) {
     header('Location: /');
   }
 
-  require '../includes//config/database.php';
-  $database = connectDatabase();
-  $queryGetProperties = "SELECT * FROM properties";
-  $resultGetProperties = mysqli_query($database, $queryGetProperties);
+  $properties = Property::all();
 
   $result = $_GET['result'] ?? null;
 
@@ -58,16 +56,16 @@
       </tr>
     </thead>
     <tbody>
-      <?php while($property = mysqli_fetch_assoc($resultGetProperties)) { ?>
+      <?php foreach($properties as $property) { ?>
         <tr>
-          <td><?php echo $property['id'] ?></td>
-          <td class="title"><?php echo $property['title'] ?></td>
-          <td><img src="../images/<?php echo $property['image'] ?>" class="image-table" alt=""></td>
-          <td>$ <?php echo $property['price'] ?></td>
+          <td><?php echo $property->id ?></td>
+          <td class="title"><?php echo $property->title ?></td>
+          <td><img src="../images/<?php echo $property->image ?>" class="image-table" alt=""></td>
+          <td>$ <?php echo $property->price ?></td>
           <td>
-            <a href="/admin/properties/update.php?id=<?php echo $property['id'] ?>" class="btn-yellow-block">Editar</a>
+            <a href="/admin/properties/update.php?id=<?php echo $property->id ?>" class="btn-yellow-block">Editar</a>
             <form method="post" class="w-100">
-              <input type="hidden" name="id" value="<?php echo $property['id'] ?>">
+              <input type="hidden" name="id" value="<?php echo $property->id ?>">
               <input type="submit" class="btn-red-block" value="Eliminar" />
             </form>
           </td>

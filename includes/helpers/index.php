@@ -14,3 +14,8 @@ function isAuthenticated(): bool {
   }
   return false;
 }
+
+function sanitize($html) {
+  $sanitize = htmlspecialchars($html);
+  return $sanitize;
+}

@@ -79,6 +79,33 @@ class Property {
     }
     return self::$errors;
   }
+
+  public static function all() {
+    $query = "SELECT * FROM properties";
+    $result = self::consultSql($query);
+    return $result;
+  }
+
+  public static function consultSql ($query) {
+    $result = self::$database->query($query);
+    $array = [];
+    while($register = $result->fetch_assoc()) {
+      $array[] = self::createObject($register);
+    }
+
+    $result->free();
+    return $array;
+  }
+
+  public static function createObject ($register) {
+    $object = new Self;
+    foreach($register as $key => $value) {
+      if (property_exists($object, $key)) {
+        $object->$key = $value;
+      }
+    }
+    return $object;
+  }
   
   public static function setDB($database) {
     self::$database = $database;
