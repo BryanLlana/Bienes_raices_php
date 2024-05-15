@@ -14,7 +14,6 @@ class Property {
   public $bedrooms;
   public $wc;
   public $parkings;
-  public $createdAt;
   public $seller_id;
 
   public function __construct($args = [])
@@ -44,6 +43,22 @@ class Property {
     return $resultInserProperty;
   }
 
+  public function update() {
+    $attributesSanitized = $this->sanitizeDB();
+    $values = [];
+
+    foreach($attributesSanitized as $key => $value){
+      $values[] = "{$key}='{$value}'";
+    }
+
+    $query = "UPDATE properties SET ";
+    $query .= join(', ', $values);
+    $query .= " WHERE id = '" . self::$database->escape_string($this->id) . "' ";
+
+    $result = self::$database->query($query);
+    return $result;
+  }
+
   public function sanitizeDB() {
     $attributes = $this->attributes();
     $attributesSanitized = [];
@@ -66,6 +81,12 @@ class Property {
   }
 
   public function setImage($image) {
+    if (isset($this->id)) {
+      $existsFile = file_exists(__DIR__ . '/../images/' . $this->image);
+      if ($existsFile) {
+        unlink(__DIR__ . '/../images/' . $this->image);
+      }
+    }
     $this->image = $image;
   }
 
@@ -84,6 +105,12 @@ class Property {
     $query = "SELECT * FROM properties";
     $result = self::consultSql($query);
     return $result;
+  }
+
+  public static function findOne($id) {
+    $query = "SELECT * FROM properties WHERE id = {$id}";
+    $result = self::consultSql($query);
+    return array_shift($result);
   }
 
   public static function consultSql ($query) {
@@ -105,6 +132,14 @@ class Property {
       }
     }
     return $object;
+  }
+
+  public function toSynchronize ($args = []) {
+    foreach($args as $key => $value) {
+      if (property_exists($this, $key) && !is_null($value)) {
+        $this->$key = $value;
+      }
+    }
   }
   
   public static function setDB($database) {
