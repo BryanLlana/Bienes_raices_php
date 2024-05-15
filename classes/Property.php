@@ -59,6 +59,12 @@ class Property {
     return $result;
   }
 
+  public function delete() {
+    $query = "DELETE FROM properties WHERE id = " . self::$database->escape_string($this->id);
+    $result = self::$database->query($query);
+    return $result;
+  }
+
   public function sanitizeDB() {
     $attributes = $this->attributes();
     $attributesSanitized = [];

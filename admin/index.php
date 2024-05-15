@@ -15,17 +15,14 @@
     $id = filter_var($id, FILTER_VALIDATE_INT);
 
     if ($id) {
-      $queryGetNameImage = "SELECT image FROM properties WHERE id = {$id}";
-      $resultGetNameImage = mysqli_query($database, $queryGetNameImage);
-      $property = mysqli_fetch_assoc($resultGetNameImage);
+      $property = Property::findOne($id);
 
       $fileImages = '../images';
-      unlink($fileImages . '/' . $property['image']);
+      unlink($fileImages . '/' . $property->image);
 
-      $queryDeleteProperty = "DELETE FROM properties WHERE id = {$id}";
-      $resultDeleteProperty = mysqli_query($database, $queryDeleteProperty);
+      $result = $property->delete();
 
-      if ($resultDeleteProperty) {
+      if ($result) {
         header('location: /admin?result=3');
       }
     }
